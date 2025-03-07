@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from pinecone import Pinecone, ServerlessSpec
 from pinecone.openapi_support import exceptions
-
 from preprocess.chunking import chunk_by_paragraph
 
 load_dotenv()
@@ -42,10 +41,10 @@ file_list = [
     "transitional-composer-and-heroic-objective"
 ]
 
-for file_name in ["orchestra-discussions", "transitional-composer-and-heroic-objective"]:
+for file_name in ["symphony-no-9"]:
     chunks = chunk_by_paragraph(file_name)
 
-    # Create vectors with text
+    # Store each document in vector with id tags
     data = []
     for i, paragraph in enumerate(chunks):
         data.append({
@@ -56,16 +55,12 @@ for file_name in ["orchestra-discussions", "transitional-composer-and-heroic-obj
             print("id 100!")
     print(f"Document {file_name} has {len(data)} vectors.")
 
+    # Get embeddings
     embeddings_list = []
-
-    remaining_data = data
     iter = int(len(data)/96)
     for i in range(iter + 1):
-        if (i == iter):
-            partition = remaining_data
-        else:
-            partition = remaining_data[:96]
-            remaining_data = remaining_data[96:]
+        ind = i*96
+        partition = data[ind:ind+96]
 
         embeddings = pc.inference.embed(
             model="multilingual-e5-large",
@@ -74,15 +69,14 @@ for file_name in ["orchestra-discussions", "transitional-composer-and-heroic-obj
         )
         embeddings_list.append(embeddings)
 
+    # Upsert data
     index = pc.Index(index_name)
 
     for i, embeddings in enumerate(embeddings_list):
         vectors = []
         ind = 96*i
-        if len(data) < ind + 96:
-            data_p = data[ind:]
-        else:
-            data_p = data[ind:ind + 96]
+
+        data_p = data[ind:ind + 96]
         for d, e in zip(data_p, embeddings):
             vectors.append({
                 "id": d["id"],
