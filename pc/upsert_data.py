@@ -41,6 +41,7 @@ file_list = [
     "transitional-composer-and-heroic-objective"
 ]
 
+batch_size = 96
 for file_name in ["symphony-no-9"]:
     chunks = chunk_by_paragraph(file_name)
 
@@ -51,16 +52,14 @@ for file_name in ["symphony-no-9"]:
             "id": f"{file_name}:{i}",
             "text": paragraph
         })
-        if i == 100:
-            print("id 100!")
     print(f"Document {file_name} has {len(data)} vectors.")
 
     # Get embeddings
     embeddings_list = []
-    iter = int(len(data)/96)
+    iter = int(len(data)/batch_size)
     for i in range(iter + 1):
-        ind = i*96
-        partition = data[ind:ind+96]
+        ind = i*batch_size
+        partition = data[ind:ind+batch_size]
 
         embeddings = pc.inference.embed(
             model="multilingual-e5-large",
@@ -74,9 +73,9 @@ for file_name in ["symphony-no-9"]:
 
     for i, embeddings in enumerate(embeddings_list):
         vectors = []
-        ind = 96*i
+        ind = i * batch_size
 
-        data_p = data[ind:ind + 96]
+        data_p = data[ind:ind + batch_size]
         for d, e in zip(data_p, embeddings):
             vectors.append({
                 "id": d["id"],
