@@ -1,4 +1,4 @@
-from pc.maintenance.index import upsert_data_microsoft, upsert_data_openai
+from pc.operations.index import upsert_data_microsoft, upsert_data_openai
 
 index_name = "beethoven-symphony-openai"
 
