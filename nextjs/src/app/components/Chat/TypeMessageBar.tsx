@@ -1,17 +1,23 @@
 "use client";
 
+import { messageListAtom } from "@/app/lib/atoms";
 import { useAtom } from "jotai";
-import { userPromptAtom } from "../../lib/atoms";
 import { useRef } from "react";
 
 const TypeMessageBar = () => {
     const textRef = useRef<HTMLTextAreaElement>(null);
-    const [userPrompt, setUserPrompt] = useAtom(userPromptAtom);
+    const [messageList, setMessageList] = useAtom(messageListAtom);
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === "Enter" && textRef.current) {
             // send the data to backend!
-            // textRef.current.value = "";
+
+            setMessageList([
+                ...messageList,
+                textRef.current.value
+            ]);
+
+            textRef.current.value = "";
         }
     };
     // Change placeholder to "Ask something about ..." if the chat is new
