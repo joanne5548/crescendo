@@ -1,36 +1,56 @@
 "use client";
 
-import { messageListAtom } from "@/app/lib/atoms";
-import { useAtom } from "jotai";
+import { ChatRequestOptions, UIMessage } from "ai";
+import clsx from "clsx";
 import { useRef } from "react";
 
-const TypeMessageBar = () => {
-    const textRef = useRef<HTMLTextAreaElement>(null);
-    const [messageList, setMessageList] = useAtom(messageListAtom);
+interface TypeMessageBarProps {
+    messages: UIMessage[];
+    input: string;
+    handleInputChange: (
+        e:
+            | React.ChangeEvent<HTMLInputElement>
+            | React.ChangeEvent<HTMLTextAreaElement>
+    ) => void;
+    handleSubmit: (
+        event?: {
+            preventDefault?: () => void;
+        },
+        chatRequestOptions?: ChatRequestOptions
+    ) => void;
+}
 
-    const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (event.key === "Enter" && textRef.current) {
-            // send the data to backend!
+const TypeMessageBar = ({
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+}: TypeMessageBarProps) => {
+    const inputRef = useRef<HTMLInputElement>(null);
 
-            setMessageList([
-                ...messageList,
-                textRef.current.value
-            ]);
-
-            textRef.current.value = "";
-        }
-    };
-    // Change placeholder to "Ask something about ..." if the chat is new
     return (
-        <div className="flex flex-col-reverse items-center pb-4">
-            <textarea
-                ref={textRef}
-                onKeyDown={handleKeyPress}
-                placeholder="Reply to Crescendo"
-                className="p-3 w-1/2 min-w-96 rounded-xl border-[1px] border-slate-200 shadow-2xl outline-none bg-slate-100
+        <form
+            onSubmit={(e) => {
+                console.log(input);
+                handleSubmit(e);
+                inputRef.current!.value = "";
+            }}
+            className="flex flex-col-reverse items-center pb-4"
+        >
+            <input
+                type="text"
+                value={input}
+                ref={inputRef}
+                onChange={handleInputChange}
+                placeholder={clsx(
+                    messages.length
+                        ? "Reply to Crescendo"
+                        : "Ask something about ..."
+                )}
+                className="p-3 w-1/2 min-w-[28rem] rounded-xl border-[1px] border-slate-200 shadow-2xl outline-none bg-slate-100
                             resize-none max-h-32"
             />
-        </div>
+        </form>
     );
 };
 

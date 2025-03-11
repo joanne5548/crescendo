@@ -1,21 +1,31 @@
-import { messageListAtom } from "@/app/lib/atoms";
-import ChatbotMessage from "./ChatbotMessage";
-import UserMessage from "./UserMessage";
-import { useAtom } from "jotai/react/useAtom";
+"use client";
 
-const ChatContent = () => {
-    const [messageList, setMessageList] = useAtom(messageListAtom);
+import MessageBubble from "./MessageBubble";
+import { useEffect, useRef } from "react";
+import { UIMessage } from "ai";
+
+interface ChatContentProps {
+    messages: UIMessage[];
+}
+
+const ChatContent = ({ messages }: ChatContentProps) => {
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const element = scrollRef.current;
+        if (element) {
+            element.scrollTop = element.scrollHeight;
+        }
+    }, [messages])
 
     return (
-        <div className="flex flex-col items-center gap-4 h-full p-4 pb-8 rounded-b-xl overflow-y-auto">
-            {messageList.map((message) => {
-                if (message.from === "user") {
-                    return <UserMessage userMessage={message.content} />
-                }
-                return <ChatbotMessage chatbotMessage={message.content} />
-            })}
-            {/* <UserMessage userMessage="Tell me about Beethoven's Symphony No. 1." />
-            <ChatbotMessage chatbotMessage={`Yoyoyoyoyooyo\nYO YO MAAA`} /> */}
+        <div ref={scrollRef} className="flex flex-col items-center gap-4 h-full p-4 pb-8 rounded-b-xl overflow-y-auto">
+            {messages.map((message) => (
+                <MessageBubble
+                    key={`${message.id}`}
+                    message={message}
+                />
+            ))}
         </div>
     );
 };
