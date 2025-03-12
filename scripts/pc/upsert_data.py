@@ -3,8 +3,8 @@ from pc.operations.index import upsert_data_microsoft, upsert_data_openai
 index_name = "beethoven-symphony-openai"
 
 file_list = [
-    # "symphony-no-1",
-    # "symphony-no-2",
+    "symphony-no-1",
+    "symphony-no-2",
     "symphony-no-3",
     "symphony-no-4",
     "symphony-no-5",
@@ -13,7 +13,7 @@ file_list = [
     "symphony-no-8",
     "symphony-no-9",
     "orchestra-discussions",
-    "transitional-composer-and-heroic-objective",
+    "transitional-composer-and-heroic-objective",Symphony No. 1 in C, Op. 21 (1800)
 ]
 
 # upsert_data_microsoft(file_list=file_list, batch_size=96, index_name=index_name)
