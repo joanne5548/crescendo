@@ -1,7 +1,8 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-.markdown > * {
+/* .markdown > * {
     all: revert;
     margin: 0;
     word-wrap: break-word;
-}
+} */

@@ -17,7 +17,7 @@ const MessageBubble = ({ message }: UserMessageProps) => {
             {message.role === "user" ? (
                 <>{message.content}</>
             ) : (
-                <div className="markdown">
+                <div className="prose **:m-0 prose-li:whitespace-normal">
                     <ReactMarkdown>{message.content}</ReactMarkdown>
                 </div>
             )}
