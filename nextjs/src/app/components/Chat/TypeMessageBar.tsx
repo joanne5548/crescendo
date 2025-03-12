@@ -31,7 +31,6 @@ const TypeMessageBar = ({
     return (
         <form
             onSubmit={(e) => {
-                console.log(input);
                 handleSubmit(e);
                 inputRef.current!.value = "";
             }}

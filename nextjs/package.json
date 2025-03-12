@@ -11,6 +11,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^1.2.1",
     "@ai-sdk/react": "^1.1.21",
+    "@pinecone-database/pinecone": "^5.1.1",
     "ai": "^4.1.54",
     "clsx": "^2.1.1",
     "jotai": "^2.12.1",
