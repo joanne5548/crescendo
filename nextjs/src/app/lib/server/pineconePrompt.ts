@@ -1,5 +1,8 @@
 const contextSource = "University of Rochester, Eastman School of Music"
 
+/* context string taken out:
+    If link is a pdf and you are CERTAIN of the page number, please include the page number in the pdf href (e.g. .pdf#page=x ).
+*/
 export const getSystemPrompt = (context: string) => {
     return `AI assistant is a brand new, powerful, human-like artificial intelligence.
             DO NOT SHARE REFERENCE URLS THAT ARE NOT INCLUDED IN THE CONTEXT BLOCK.
@@ -15,6 +18,18 @@ export const getSystemPrompt = (context: string) => {
             END OF CONTEXT BLOCK`;
 };
 
-/* context string taken out:
-    If link is a pdf and you are CERTAIN of the page number, please include the page number in the pdf href (e.g. .pdf#page=x ).
-*/
+export const getNamespaceList = () => {
+    return [
+        "symphony-no-1",
+        "symphony-no-2",
+        "symphony-no-3",
+        "symphony-no-4",
+        "symphony-no-5",
+        "symphony-no-6",
+        "symphony-no-7",
+        "symphony-no-8",
+        "symphony-no-9",
+        "orchestra-discussions",
+        "transitional-composer-and-heroic-objective",
+    ]
+}

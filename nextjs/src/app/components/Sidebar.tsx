@@ -6,7 +6,7 @@ import { useState } from "react";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 
 const Sidebar = () => {
-    const [shrink, setShrink] = useState<boolean>(false);
+    const [shrink, setShrink] = useState<boolean>(true);
 
     // Maybe also do animation! (ease-in-out and duration-300?)
     const handleShrinkButtonClick = () => {

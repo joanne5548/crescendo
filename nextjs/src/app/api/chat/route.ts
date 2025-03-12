@@ -4,9 +4,7 @@ import { streamText, UIMessage } from "ai";
 
 export async function POST(req: Request) {
     try {
-        console.log("Running post request");
         const { messages }: {messages: UIMessage[]} = await req.json();
-        console.log(messages);
 
         const lastMessage = messages[messages.length - 1].content;
         const context = await getContext(lastMessage);
