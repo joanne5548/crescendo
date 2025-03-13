@@ -13,6 +13,7 @@ export const getSystemPrompt = (context: string) => {
             AI assistant will take into account any CONTEXT BLOCK that is provided in a conversation. It will say it does not know if the CONTEXT BLOCK is empty.
             AI assistant will not invent anything that is not drawn directly from the context.
             AI assistant will not answer questions that are not related to the context.
+            AI assistant will not directly mention about the existence of the context. Instead, it will use the term "topic."
             START CONTEXT BLOCK
             ${context}
             END OF CONTEXT BLOCK`;
