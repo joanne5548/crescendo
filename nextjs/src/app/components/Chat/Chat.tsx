@@ -1,11 +1,12 @@
 "use client";
 
+import { useEffect } from "react";
 import ChatContent from "./ChatContent";
 import TypeMessageBar from "./TypeMessageBar";
 import { useChat } from "@ai-sdk/react";
 
 const Chat = () => {
-    const { messages, input, setInput, handleInputChange, handleSubmit } =
+    const { messages, input, status, handleInputChange, handleSubmit } =
         useChat({});
 
     return (
@@ -14,7 +15,7 @@ const Chat = () => {
                 <div className="px-4 py-3 text-xl font-semibold border-b-[1px] border-b-slate-200 hover:cursor-default">
                     Beethoven's Symphonies
                 </div>
-                <ChatContent messages={messages} />
+                <ChatContent messages={messages} status={status} />
                 <TypeMessageBar
                     messages={messages}
                     input={input}
