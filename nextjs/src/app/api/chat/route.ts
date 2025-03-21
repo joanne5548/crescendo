@@ -1,4 +1,5 @@
 import { getContext } from "@/app/lib/server/pinecone";
+import { defaultSystemPrompt } from "@/app/lib/server/pineconePrompt";
 import { openai } from "@ai-sdk/openai";
 import { streamText, UIMessage } from "ai";
 
@@ -11,7 +12,7 @@ export async function POST(req: Request) {
 
         const result = streamText({
             model: openai("gpt-4o-mini"),
-            system: context,
+            system: context || defaultSystemPrompt,
             messages: messages,
         });
 

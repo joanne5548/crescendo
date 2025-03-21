@@ -19,6 +19,8 @@ export const getSystemPrompt = (context: string) => {
             END OF CONTEXT BLOCK`;
 };
 
+export const defaultSystemPrompt = "You are a helpful AI assistant in expertise of Beethoven's Symphonies.";
+
 export const getNamespaceList = () => {
     return [
         "symphony-no-1",
@@ -33,4 +35,4 @@ export const getNamespaceList = () => {
         "orchestra-discussions",
         "transitional-composer-and-heroic-objective",
     ]
-}
+};

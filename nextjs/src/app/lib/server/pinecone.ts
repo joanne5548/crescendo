@@ -48,9 +48,14 @@ const getNamespace = async (
             includeValues: false,
             includeMetadata: true,
         });
+        const cleanedResponse = cleanQueryResponse(queryResponse)[0];
 
-        const namespaceId = cleanQueryResponse(queryResponse)[0].id;
+        console.log(`Namespace similarity score: ${cleanedResponse.score}`);
+        if (cleanedResponse.score < 0.4) {
+            return null;
+        }
 
+        const namespaceId = cleanedResponse.id;
         const i = namespaceId.indexOf(":");
         if (i === -1) {
             throw Error("Retrieved namespace has invalid id.");
@@ -71,10 +76,9 @@ const buildContext = (queryResponse: QueryResponse<RecordMetadata>) => {
         context += `${query.text} Reference url: ${query.referenceUrl}`;
         context += "\n";
     });
-    console.log(context);
 
     const systemPrompt = getSystemPrompt(context);
-    console.log(systemPrompt);
+    console.log(`System Prompt retrieved:\n${systemPrompt}`);
     return systemPrompt;
 };
 
@@ -95,6 +99,10 @@ export const getContext = async (message: string) => {
         const index = pc.index("beethoven-symphony-openai");
 
         const namespace = await getNamespace(index, embedding);
+        if (!namespace) {
+            return null;
+        }
+        console.log(`Namespace selected: ${namespace}`);
 
         const queryResponse = await index.namespace(`${namespace}`).query({
             topK: 2,
