@@ -129,7 +129,7 @@ def upsert_namespace_openai(index_name, batch_size, file_name="namespace"):
     for i, namespace_content in enumerate(chunks):
         if i < 9:
             namespace = f"symphony-no-{i+1}"
-        elif i == 10:
+        elif i == 9:
             namespace = "orchestra-discussions"
         else:
             namespace = "transitional-composer-and-heroic-objective"
