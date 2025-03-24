@@ -3,12 +3,13 @@
 
 ## Frontend
 - [ ] Clean up MessageBubble.tsx
-    - [ ] Why is there so much space between p and ol tags?
+    - [ ] Fix space between p and ol tags
     - [x] Open links in new tab: [Stackoverflow](https://stackoverflow.com/questions/69119798/react-markdown-links-dont-open-in-a-new-tab-despite-using-target-blank)
 - [x] Move message bubbbles to each side
-- [ ] Make input box grow upwards with longer message
-- [ ] Make each tab a template
+- [x] Make each tab a template
+    - [Deriving list from a union type](https://stackoverflow.com/questions/45251664/derive-union-type-from-tuple-array-values)
 - [x] Make loading message
+- [ ] Make input box grow upwards with longer message
 
 <details>
 <summary>References</summary>
@@ -29,5 +30,4 @@
 - [ ] Enhance namespace search
     - [ ] Add more data to each namespace
     - [ ] Perform lexical search
-- [ ] Don't get context if similarity score is low
-    - [ ] What threshold to use?
+- [x] Don't get context if similarity score is low

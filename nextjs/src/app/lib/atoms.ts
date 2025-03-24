@@ -1,6 +1,4 @@
 import { atom } from "jotai";
-import { Message } from "./interfaces";
+import { TopicNames } from "./types";
 
-// Refactor the string type into an interface that contains:
-// Message content, sender (user or chatbot)
-// export const messageListAtom = atom<Message[]>([]);
+export const SelectedTopicAtom = atom<TopicNames | null>(null);

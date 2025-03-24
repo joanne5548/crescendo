@@ -4,6 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
+import { SelectedTopicAtom } from "../../lib/atoms";
+import { TopicList } from "@/app/lib/types";
+import TopicButton from "./TopicButton";
 
 const Sidebar = () => {
     const [shrink, setShrink] = useState<boolean>(true);
@@ -42,9 +45,9 @@ const Sidebar = () => {
                         <div className="text-lg text-white px-3 py-2 hover:cursor-default">
                             Topics
                         </div>
-                        <div className="text-white px-3 py-2 rounded-lg hover:bg-slate-800 hover:cursor-pointer">
-                            Beethoven's Symphonies
-                        </div>
+                        {TopicList.map((topic) => (
+                            <TopicButton topic={topic} key={topic} />
+                        ))}
                     </div>
                 </>
             ) : (
