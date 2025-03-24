@@ -1,10 +1,10 @@
 import Chat from "./components/Chat/Chat";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/SideBar/Sidebar";
 
 export default function Home() {
     return (
         <main className="flex flex-row w-screen h-screen font-[family-name:var(--font-nunito)]">
-			<Sidebar />
+            <Sidebar />
             <Chat />
         </main>
     );
