@@ -8,9 +8,9 @@ import { SelectedTopicAtom } from "@/app/lib/atoms";
 
 const Chat = () => {
     const selectedTopic = useAtomValue(SelectedTopicAtom);
-    // Create new chat for each topic! Should I keep them all?
     const { messages, input, status, handleInputChange, handleSubmit } =
         useChat({
+            id: selectedTopic as string,
             body: {
                 selectedTopic: selectedTopic,
             }
