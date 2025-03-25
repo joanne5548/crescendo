@@ -24,7 +24,7 @@
 </details>
 
 ## Backend
-
+- [ ] [Send topic data through body?](https://sdk.vercel.ai/docs/reference/ai-sdk-ui/use-chat)
 
 ## Pinecone
 - [ ] Enhance namespace search

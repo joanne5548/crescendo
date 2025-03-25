@@ -8,8 +8,10 @@ import {
     ScoredPineconeRecord,
 } from "@pinecone-database/pinecone";
 import { embed } from "ai";
-import { queryResult } from "../interfaces";
+import { QueryResult, TopicNames, TopicToIndex } from "../types";
 import { getSystemPrompt } from "./pineconePrompt";
+import { useAtomValue } from "jotai";
+import { SelectedTopicAtom } from "../atoms";
 
 const cleanQueryResponse = (queryResponse: QueryResponse<RecordMetadata>) => {
     return queryResponse.matches.map(
@@ -23,7 +25,7 @@ const cleanQueryResponse = (queryResponse: QueryResponse<RecordMetadata>) => {
                 throw new Error("Query does not have correct structure.");
             }
 
-            const extractedData: queryResult = {
+            const extractedData: QueryResult = {
                 id: record.id,
                 score: record.score,
                 text: record.metadata.text as string,
@@ -72,7 +74,7 @@ const buildContext = (queryResponse: QueryResponse<RecordMetadata>) => {
     const cleanedQueryResponse = cleanQueryResponse(queryResponse);
 
     let context = "";
-    cleanedQueryResponse.forEach((query: queryResult) => {
+    cleanedQueryResponse.forEach((query: QueryResult) => {
         context += `${query.text} Reference url: ${query.referenceUrl}`;
         context += "\n";
     });
@@ -82,21 +84,23 @@ const buildContext = (queryResponse: QueryResponse<RecordMetadata>) => {
     return systemPrompt;
 };
 
-export const getContext = async (message: string) => {
+export const getContext = async (message: string, selectedTopic: TopicNames) => {
     try {
         if (!process.env.PINECONE_API_KEY) {
-            throw Error("Pinecone API not defined");
+            throw Error("Pinecone API Key not defined");
         }
+
         const pc = new Pinecone({
             apiKey: process.env.PINECONE_API_KEY,
         });
+
+        // console.log(TopicToIndex[selectedTopic]);
+        const index = pc.index(TopicToIndex[selectedTopic]);
 
         const { embedding } = await embed({
             model: openai.embedding("text-embedding-3-small"),
             value: message,
         });
-
-        const index = pc.index("beethoven-symphony-openai");
 
         const namespace = await getNamespace(index, embedding);
         if (!namespace) {

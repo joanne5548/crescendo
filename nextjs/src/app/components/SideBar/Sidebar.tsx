@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
-import { SelectedTopicAtom } from "../../lib/atoms";
 import { TopicList } from "@/app/lib/types";
 import TopicButton from "./TopicButton";
 

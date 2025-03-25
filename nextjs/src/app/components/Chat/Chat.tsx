@@ -7,9 +7,14 @@ import { useAtomValue } from "jotai";
 import { SelectedTopicAtom } from "@/app/lib/atoms";
 
 const Chat = () => {
-    const { messages, input, status, handleInputChange, handleSubmit } =
-        useChat({});
     const selectedTopic = useAtomValue(SelectedTopicAtom);
+    // Create new chat for each topic! Should I keep them all?
+    const { messages, input, status, handleInputChange, handleSubmit } =
+        useChat({
+            body: {
+                selectedTopic: selectedTopic,
+            }
+        });
 
     return (
         <div className="p-4 pl-2 w-full h-full">
