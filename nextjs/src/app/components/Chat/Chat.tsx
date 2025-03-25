@@ -19,7 +19,7 @@ const Chat = () => {
     return (
         <div className="p-4 pl-2 w-full h-full">
             <div className="flex flex-col h-full rounded-xl bg-white">
-                <div className="px-4 py-3 text-xl font-semibold border-b-[1px] border-b-slate-200 hover:cursor-default">
+                <div className="p-3 sm:px-4 sm:py-3 text-lg sm:text-xl font-semibold border-b-[1px] border-b-slate-200 hover:cursor-default">
                     {selectedTopic ? selectedTopic : "Crescendo"}
                 </div>
                 {selectedTopic ? (
@@ -33,8 +33,8 @@ const Chat = () => {
                         />
                     </>
                 ) : (
-                    <div className="flex justify-center items-center h-full text-xl">
-                        Click topics on the left to start chatting with Crescendo!
+                    <div className="flex justify-center items-center h-full text-lg sm:text-xl">
+                        Click the topics to start chatting with Crescendo!
                     </div>
                 )}
             </div>

@@ -37,7 +37,7 @@ const TypeMessageBar = ({
     };
 
     return (
-        <div className="flex flex-col-reverse items-center pb-4">
+        <div className="flex flex-col-reverse items-center w-full sm:w-auto px-8 sm:px-0 pb-4">
             <textarea
                 value={input}
                 ref={textareaRef}
@@ -48,7 +48,7 @@ const TypeMessageBar = ({
                         ? "Reply to Crescendo"
                         : "Ask something about ..."
                 )}
-                className="p-3 w-1/2 min-w-[28rem] rounded-xl border-[1px] border-slate-200 shadow-2xl outline-none bg-slate-100
+                className="p-3 w-full sm:w-1/2 sm:min-w-[28rem] rounded-xl border-[1px] border-slate-200 shadow-2xl outline-none bg-slate-100
                             resize-none max-h-32"
             />
         </div>
