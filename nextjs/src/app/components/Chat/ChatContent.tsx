@@ -29,7 +29,7 @@ const ChatContent = ({ messages, status }: ChatContentProps) => {
                 />
             ))}
             {status === "submitted" &&
-            <div className="flex flex-row gap-2 w-fit sm:w-1/2 sm:min-w-[28rem] whitespace-pre-wrap px-3 py-2 sm:p-3 rounded-b-xl border-[1px] border-slate-200 shadow-2xl bg-slate-100 rounded-tr-xl">
+            <div className="flex flex-row gap-2 w-fit sm:w-1/2 sm:min-w-[28rem] whitespace-pre-wrap px-3 py-2 sm:p-3 rounded-b-xl border-[1px] border-slate-200 shadow-xl bg-slate-100 rounded-tr-xl">
                 <GiMusicalNotes className="size-6 animate-wiggle"/>
                 Thinking...
             </div>}

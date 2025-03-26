@@ -19,7 +19,7 @@ const MessageBubble = ({ message }: UserMessageProps) => {
     return (
         <div
             className={clsx(
-                "sm:w-1/2 sm:min-w-[28rem] whitespace-pre-wrap px-3 py-2 sm:p-3 rounded-b-xl border-[1px] border-slate-200 shadow-2xl bg-slate-100 ",
+                "sm:w-1/2 sm:min-w-[28rem] whitespace-pre-wrap px-3 py-2 sm:p-3 rounded-b-xl border-[1px] border-slate-200 shadow-xl bg-slate-100 ",
                 message.role === "user"
                     ? "rounded-tl-xl self-end"
                     : "rounded-tr-xl"

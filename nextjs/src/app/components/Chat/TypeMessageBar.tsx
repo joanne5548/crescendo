@@ -48,7 +48,7 @@ const TypeMessageBar = ({
                         ? "Reply to Crescendo"
                         : "Ask something about ..."
                 )}
-                className="p-3 w-full sm:w-1/2 sm:min-w-[28rem] rounded-xl border-[1px] border-slate-200 shadow-2xl outline-none bg-slate-100
+                className="p-3 w-full sm:w-1/2 sm:min-w-[28rem] rounded-xl border-[1px] border-slate-200 shadow-xl outline-none bg-slate-100
                             resize-none max-h-32"
             />
         </div>

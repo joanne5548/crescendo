@@ -2,15 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import {
-    FaAngleDoubleDown,
-    FaAngleDoubleLeft,
-    FaAngleDoubleRight,
-    FaAngleDoubleUp,
-} from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { TopicList } from "@/app/lib/types";
 import TopicButton from "./TopicButton";
+import { GrMenu } from "react-icons/gr";
 
 const Sidebar = () => {
     const [shrink, setShrink] = useState<boolean>(true);
@@ -19,6 +15,16 @@ const Sidebar = () => {
     const handleShrinkButtonClick = () => {
         setShrink(!shrink);
     };
+
+    useEffect(() => {
+        const handleWindowSize = () => {
+            if (window.innerWidth < 640) {
+                setShrink(false);
+            }
+        };
+
+        handleWindowSize();
+    }, []);
 
     return (
         <div className="flex flex-col shrink-0 sm:gap-8 sm:h-full p-2 pb-0 sm:pb-2 sm:pr-0 ease-in-out duration-300">
@@ -43,7 +49,7 @@ const Sidebar = () => {
                             className="p-2 rounded-lg hover:cursor-pointer hover:bg-slate-800"
                         >
                             <FaAngleDoubleLeft className="hidden sm:block text-white size-4 stroke-[5]" />
-                            <FaAngleDoubleUp className="sm:hidden text-white size-4 stroke-[5" />
+                            <GrMenu className="sm:hidden text-white size-4 stroke-[5]" />
                         </button>
                     </div>
                     <div className="flex flex-col">
@@ -68,7 +74,7 @@ const Sidebar = () => {
                         className="p-2 rounded-lg sm:mt-4 hover:cursor-pointer hover:bg-slate-800"
                     >
                         <FaAngleDoubleRight className="hidden sm:block text-white size-4 stroke-[5]" />
-                        <FaAngleDoubleDown className="sm:hidden text-white size-4 stroke-[5]" />
+                        <GrMenu className="sm:hidden text-white size-4 stroke-[5]" />
                     </button>
                 </div>
             )}
