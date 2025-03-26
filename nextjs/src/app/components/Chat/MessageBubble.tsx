@@ -1,8 +1,9 @@
 import { UIMessage } from "ai";
 import clsx from "clsx";
-import ReactMarkdown from "react-markdown";
+import React from "react";
+import ReactMarkdown, { Components } from "react-markdown";
 
-const NewTabLink = (props: any) => {
+const NewTabLink: Components["a"] = (props) => {
     return (
         <a href={props.href} target="_blank" rel="noreferrer">
             {props.children}

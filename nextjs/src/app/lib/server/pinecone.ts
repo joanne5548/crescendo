@@ -10,8 +10,6 @@ import {
 import { embed } from "ai";
 import { QueryResult, TopicNames, TopicToIndex } from "../types";
 import { getSystemPrompt } from "./pineconePrompt";
-import { useAtomValue } from "jotai";
-import { SelectedTopicAtom } from "../atoms";
 
 const cleanQueryResponse = (queryResponse: QueryResponse<RecordMetadata>) => {
     return queryResponse.matches.map(
