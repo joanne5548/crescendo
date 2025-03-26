@@ -87,6 +87,7 @@ def upsert_data_openai(file_list, batch_size, index_name):
         data = []
         for i, paragraph in enumerate(chunks):
             data.append({"id": f"{file_name}:{i}", "text": paragraph})
+            # print(f"Chunk {i+1}: \"{paragraph[:75]}...\"")
         print(f"Document {file_name} has {len(data)} vectors.")
 
         # Get embeddings
@@ -113,12 +114,24 @@ def upsert_data_openai(file_list, batch_size, index_name):
                         "values": e.embedding,
                         "metadata": {
                             "text": d["text"],
-                            "referenceUrl": f"https://www.esm.rochester.edu/beethoven/{file_name}",
+                            "referenceUrl": "http://www.cscanada.net/index.php/sss/article/viewFile/8018/pdf",
+                            # "referenceUrl": f"https://www.esm.rochester.edu/beethoven/{file_name}",
                         },
                     }
                 )
             response = index.upsert(vectors=vectors, namespace=f"{file_name}")
             print(response)
+
+
+def get_namespace_from_id_beethoven(i):
+    if i < 9:
+        namespace = f"symphony-no-{i+1}"
+    elif i == 9:
+        namespace = "orchestra-discussions"
+    else:
+        namespace = "transitional-composer-and-heroic-objective"
+
+    return namespace
 
 
 def upsert_namespace_openai(index_name, batch_size, file_name="namespace"):
@@ -127,13 +140,8 @@ def upsert_namespace_openai(index_name, batch_size, file_name="namespace"):
     chunks = chunk_by_paragraph(file_name)
     data = []
     for i, namespace_content in enumerate(chunks):
-        if i < 9:
-            namespace = f"symphony-no-{i+1}"
-        elif i == 9:
-            namespace = "orchestra-discussions"
-        else:
-            namespace = "transitional-composer-and-heroic-objective"
-
+        # namespace = get_namespace_from_id_beethoven(i)
+        namespace = "piano-concerto"
         data.append({"id": f"{file_name}:{namespace}", "text": namespace_content})
     print(f"Document {file_name} has {len(data)} vectors.")
 
