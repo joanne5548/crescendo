@@ -92,7 +92,6 @@ export const getContext = async (message: string, selectedTopic: TopicNames) => 
             apiKey: process.env.PINECONE_API_KEY,
         });
 
-        // console.log(TopicToIndex[selectedTopic]);
         const index = pc.index(TopicToIndex[selectedTopic]);
 
         const { embedding } = await embed({

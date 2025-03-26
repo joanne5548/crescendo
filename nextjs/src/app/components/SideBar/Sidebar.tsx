@@ -30,20 +30,22 @@ const Sidebar = () => {
         <div className="flex flex-col shrink-0 sm:gap-8 sm:h-full p-2 pb-0 sm:pb-2 sm:pr-0 ease-in-out duration-300">
             {shrink ? (
                 <>
-                    <div className="flex flex-row justify-between sm:justify-start items-center gap-3 p-2 sm:p-0 sm:mt-4">
-                        <Image
-                            src={"/images/logo.png"}
-                            className="hidden sm:block rounded-xl"
-                            alt="logo"
-                            width={36}
-                            height={36}
-                        />
-                        <Link
-                            href="/"
-                            className="text-white text-xl sm:text-2xl font-medium"
-                        >
-                            Crescendo
-                        </Link>
+                    <div className="flex flex-row w-full justify-between items-center gap-3 p-2 sm:p-0 sm:mt-4">
+                        <div className="flex flex-row gap-3 items-center">
+                            <Image
+                                src={"/images/logo.png"}
+                                className="hidden sm:block rounded-xl"
+                                alt="logo"
+                                width={36}
+                                height={36}
+                            />
+                            <Link
+                                href="/"
+                                className="text-white text-xl sm:text-2xl font-medium"
+                            >
+                                Crescendo
+                            </Link>
+                        </div>
                         <button
                             onClick={handleShrinkButtonClick}
                             className="p-2 rounded-lg hover:cursor-pointer hover:bg-slate-800"

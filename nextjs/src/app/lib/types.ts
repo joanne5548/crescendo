@@ -5,12 +5,13 @@ export interface QueryResult {
     referenceUrl?: string;
 }
 
-export const TopicList = ["Beethoven's Symphonies", "test"] as const;
-export const PineconeIndexName = ["beethoven-symphony-openai", "test"] as const;
+export const TopicList = ["Beethoven's Symphonies", "Rachmaninoff's Piano Concertos"] as const;
+export const PineconeIndexName = ["beethoven-symphony-openai", "rachmaninoff-openai"] as const;
 
 export type TopicNames = (typeof TopicList)[number];
+type PineconeIndexNames = (typeof PineconeIndexName)[number];
 
-export const TopicToIndex: { [key in TopicNames]: string } = {
+export const TopicToIndex: { [key in TopicNames]: PineconeIndexNames } = {
     "Beethoven's Symphonies": "beethoven-symphony-openai",
-    test: "test",
+    "Rachmaninoff's Piano Concertos": "rachmaninoff-openai",
 };
