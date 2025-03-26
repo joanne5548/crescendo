@@ -27,7 +27,7 @@ const Sidebar = () => {
     }, []);
 
     return (
-        <div className="flex flex-col shrink-0 sm:gap-8 sm:h-full p-2 pb-0 sm:pb-2 sm:pr-0 ease-in-out duration-300">
+        <div className="flex flex-col shrink-0 sm:gap-8 sm:h-full p-2 sm:pr-0 ease-in-out duration-300">
             {shrink ? (
                 <>
                     <div className="flex flex-row w-full justify-between items-center gap-3 p-2 sm:p-0 sm:mt-4">
